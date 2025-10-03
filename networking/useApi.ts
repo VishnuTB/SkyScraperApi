@@ -6,7 +6,7 @@ import { Data } from './types/NearbyAriportsResponse';
 export default function useApi(endpoint: string, params = {}) {
   const [data, setData] = useState<Data>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<AxiosError | any>(null);
+  const [error, setError] = useState<AxiosError>();
 
   const fetch = async () => {
     setLoading(true);
@@ -14,6 +14,7 @@ export default function useApi(endpoint: string, params = {}) {
       const response = await api.get(endpoint, { params });
       setData(response.data);
     } catch (err: AxiosError | any) {
+      console.log('API Error:', JSON.stringify(err, null, 2));
       setError(err);
       if (err.response?.status === 429) {
         console.warn('Rate limit reached, try again later');
