@@ -1,7 +1,7 @@
-import { AxiosError } from 'axios';
-import { useState } from 'react';
-import api from './api';
-import { Data } from './types/NearbyAriportsResponse';
+import { AxiosError } from "axios";
+import { useState } from "react";
+import api from "./api";
+import { Data } from "./types/NearbyAriportsResponse";
 
 export default function useApi(endpoint: string, params = {}) {
   const [data, setData] = useState<Data>();
@@ -12,13 +12,13 @@ export default function useApi(endpoint: string, params = {}) {
     setLoading(true);
     try {
       const response = await api.get(endpoint, { params });
-      setData(response.data);
+      setData(response.data.data);
     } catch (err: AxiosError | any) {
-      console.log('API Error:', JSON.stringify(err, null, 2));
+      console.log("API Error:", JSON.stringify(err, null, 2));
       setError(err);
       if (err.response?.status === 429) {
-        console.warn('Rate limit reached, try again later');
-        console.log('Error details:', err.response?.data);
+        console.warn("Rate limit reached, try again later");
+        console.log("Error details:", err.response?.data);
       }
     } finally {
       setLoading(false);

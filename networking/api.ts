@@ -1,11 +1,11 @@
 // networking/api.ts
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://sky-scrapper.p.rapidapi.com/api/v1',
+  baseURL: "https://sky-scrapper.p.rapidapi.com/api/v1",
   headers: {
-    'X-RapidAPI-Key': process.env.EXPO_PUBLIC_API_URL,
-    'X-RapidAPI-Host': 'sky-scrapper.p.rapidapi.com',
+    "x-rapidapi-key": process.env.EXPO_PUBLIC_API_URL,
+    "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
   },
   timeout: 15000,
 });
